@@ -1,9 +1,11 @@
 # GENERAL
 alias ll='ls -l'
+alias la='ls -la'
 alias find_file='find . -iname'
 fd () {
 	find . -iname *$1*
 }
+
 # ROUTES
 alias www='cd "/mnt/c/wamp64/www/"'
 alias miw='www && cd MIW'
@@ -11,6 +13,7 @@ alias m1='www && cd MASTER_1'
 alias sr='source ~/.bashrc'
 alias al='vim ~/.bash_aliases && source ~/.bashrc'
 alias deno='/home/alex/.deno/bin/deno'
+alias course='cd /mnt/c/Users/alex8/Documents/course/'
 
 #alias git
 alias gsh='git show'
@@ -38,6 +41,12 @@ alias ..='cd "../.."'
 alias ...='cd "../../.."'
 alias ....='cd "../../../.."'
 
+#npm
+alias nrw='npm run watch'
+alias nrwp='npm run watch-poll'
+alias nrb='npm run build'
+alias nrs='npm start'
+
 #Youtube
 alias songs='cd "/mnt/c/Users/alex8/Music/new_p"'
 yt () {
@@ -46,9 +55,16 @@ yt () {
 alias ytu='sudo youtube-dl -U'
 
 #sequelize cli
-se (){
-	./node_modules/.bin/sequelize $@
+se ()
+{
+	node_modules/.bin/sequelize $@
 }
+
+nest ()
+{
+	node_modules/.bin/nest $@
+}
+
 #symfony
 alias sym='php bin/console'
 alias s:n='symfony new --version=4.4 --full' 
