@@ -3,6 +3,7 @@ alias ll='ls -l'
 alias la='ls -la'
 alias al='vim ~/.bash_aliases && source ~/.bashrc'
 alias c='clear'
+alias h='cd ~'
 
 function fd () {
 	find . -iname *$1*
@@ -82,6 +83,18 @@ alias nrd='npm run development'
 alias nrp='npm run production'
 alias nrh='npm run hot'
 
+#yarn
+alias yrd="yarn run dev"
+alias yrw="yarn run watch"
+alias yrwp="yarn run watch-poll"
+alias yrh="yarn run hot"
+alias yrp="yarn run production"
+
+#vendor 
+alias codecept='vendor/bin/codecept'
+alias phpspec='vendor/bin/phpspec'
+alias phpunit='vendor/bin/phpunit'
+
 #Youtube
 alias songs='cd "/mnt/c/Users/alex8/Music/new_p"'
 yt () {
@@ -123,10 +136,14 @@ d:q:s () {
 #Laravel
 alias art='artisan'
 
-# SFG
+### SFG
+## Local
 #stead
 alias dev='cd "/mnt/c/HS_DEV"'
 alias dev_h='dev && cd Homestead'
 alias dev_w='dev && cd Webdev'
 
 alias stead='dev_h && vim Homestead.yaml'
+
+##vagrant vm
+alias home="cd code"
