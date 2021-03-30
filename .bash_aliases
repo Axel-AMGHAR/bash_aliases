@@ -1,9 +1,23 @@
 # GENERAL
 alias ll='ls -l'
 alias la='ls -la'
-alias find_file='find . -iname'
-fd () {
+alias al='vim ~/.bash_aliases && source ~/.bashrc'
+alias c='clear'
+
+function fd () {
 	find . -iname *$1*
+}
+
+function gr () {
+	grep -nri $@ *
+}
+
+function sdir () {
+	du -sh $@
+}
+
+function sfile () {
+	du -bsh $@
 }
 
 # ROUTES
@@ -11,7 +25,6 @@ alias www='cd "/mnt/c/wamp64/www/"'
 alias miw='www && cd MIW'
 alias m1='www && cd MASTER_1'
 alias sr='source ~/.bashrc'
-alias al='vim ~/.bash_aliases && source ~/.bashrc'
 alias deno='/home/alex/.deno/bin/deno'
 alias course='cd /mnt/c/Users/alex8/Documents/course/'
 
@@ -20,20 +33,39 @@ alias gsh='git show'
 alias gs='git status'
 alias gp='git pull'
 alias ga.='git add .'
-alias gc='git commit'
 alias gps='git push'
-alias gacp='ga. ;gc ;gps;'
 alias grh='git reset HEAD'
 alias gd='git diff'
-alias gcl='git clone'
+
+function gc () {
+	git commit -m "$1"
+}
+
+function gacp () {
+	ga.;gc $1;gps;
+}
+
+function gcl () {
+	git clone $1
+}
+
 #undo all git add
 alias gr='git reset'
 
 #branch 
 alias gb='git branch'
-alias gch='git checkout'
-alias gnb='git checkout -b'
-alias gm='git merge'
+
+function gnb () {
+	git checkout -b $1
+}
+
+function gch () {
+	git checkout $1
+}
+
+function gm () {
+	git merge $1
+}
 
 #back
 alias .='cd ..'
@@ -45,7 +77,10 @@ alias ....='cd "../../../.."'
 alias nrw='npm run watch'
 alias nrwp='npm run watch-poll'
 alias nrb='npm run build'
-alias nrs='npm start'
+alias nrs='npm run start'
+alias nrd='npm run development'
+alias nrp='npm run production'
+alias nrh='npm run hot'
 
 #Youtube
 alias songs='cd "/mnt/c/Users/alex8/Music/new_p"'
@@ -84,3 +119,14 @@ alias mmf='m:m && mi:m && f:l'
 d:q:s () {
 	sym doctrine:query:sql "$1"
 }
+
+#Laravel
+alias art='artisan'
+
+# SFG
+#stead
+alias dev='cd "/mnt/c/HS_DEV"'
+alias dev_h='dev && cd Homestead'
+alias dev_w='dev && cd Webdev'
+
+alias stead='dev_h && vim Homestead.yaml'
