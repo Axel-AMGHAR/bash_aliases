@@ -6,7 +6,8 @@ alias c='clear'
 alias h='cd ~'
 
 function fd () {
-	find . -iname *$1*
+	echo '$@'
+	find . -iname "*$@*"
 }
 
 function gr () {
@@ -39,11 +40,11 @@ alias grh='git reset HEAD'
 alias gd='git diff'
 
 function gc () {
-	git commit -m "$1"
+	git commit -m "$@"
 }
 
 function gacp () {
-	ga.;gc $1;gps;
+	ga.;gc $@;gps;
 }
 
 function gcl () {
@@ -108,7 +109,12 @@ se ()
 	node_modules/.bin/sequelize $@
 }
 
-nest ()
+se ()
+{
+	node_modules/.bin/sequelize-cli $@
+}
+
+ne ()
 {
 	node_modules/.bin/nest $@
 }
