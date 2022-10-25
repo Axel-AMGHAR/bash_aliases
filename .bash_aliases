@@ -1,36 +1,36 @@
 # GENERAL
 alias ll='ls -l'
 alias la='ls -la'
-alias al='vim ~/.bash_aliases && source ~/.bashrc'
-alias c='clear'
-alias h='cd ~'
+alias src='source ~/.bashrc'
+alias al='vim ~/.bash_aliases && source ~/.bash_aliases'
 
-function fd () {
-	echo '$@'
+fd () {
 	find . -iname "*$@*"
 }
 
-function gr () {
+gr () {
 	grep -nri $@ *
 }
 
-function sdir () {
+sdir () {
 	du -sh $@
 }
 
-function sfile () {
+sfile () {
 	du -bsh $@
 }
 
 # ROUTES
-alias www='cd "/mnt/c/wamp64/www/"'
-alias miw='www && cd MIW'
-alias m1='www && cd MASTER_1'
-alias sr='source ~/.bashrc'
-alias deno='/home/alex/.deno/bin/deno'
-alias course='cd /mnt/c/Users/alex8/Documents/course/'
+alias c='cd /mnt/c'
+alias h='cd ~'
+alias home='h'
+alias doc='c && cd Users/aamghar/Documents'
+alias www='c && cd HS_DEV/WebDev'
 
-#alias git
+# Node
+alias deno='/home/alex/.deno/bin/deno'
+
+# Git
 alias gsh='git show'
 alias gs='git status'
 alias gp='git pull'
@@ -39,87 +39,95 @@ alias gps='git push'
 alias grh='git reset HEAD'
 alias gd='git diff'
 
-function gc () {
-	git commit -m "$@"
+gc () {
+	if [ -z $1]
+	then git commit
+	else git commit -m "$1"
+	fi
 }
 
-function gacp () {
-	ga.;gc $@;gps;
+gacp () {
+	echo $@
+	echo "$@"
+	ga. && gc "$@" && gps
 }
 
-function gcl () {
+gcl () {
 	git clone $1
 }
 
-#undo all git add
-alias gr='git reset'
+glog () {
+	git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+}
 
-#branch 
+# Undo all git add
+alias gres='git reset'
+
+# Branch 
 alias gb='git branch'
 
-function gnb () {
+gnb () {
 	git checkout -b $1
 }
 
-function gch () {
+gch () {
 	git checkout $1
 }
 
-function gm () {
+gchm () {
+	gch main
+}
+
+gm () {
 	git merge $1
 }
 
-#back
+# Back
 alias .='cd ..'
 alias ..='cd "../.."'
 alias ...='cd "../../.."'
 alias ....='cd "../../../.."'
 
-#npm
+# Npm
 alias nrw='npm run watch'
 alias nrwp='npm run watch-poll'
 alias nrb='npm run build'
 alias nrs='npm run start'
-alias nrd='npm run development'
-alias nrp='npm run production'
+alias nrd='npm run dev'
+alias nrp='npm run prod'
 alias nrh='npm run hot'
 
-#yarn
+# Yarn
 alias yrd="yarn run dev"
 alias yrw="yarn run watch"
 alias yrwp="yarn run watch-poll"
 alias yrh="yarn run hot"
 alias yrp="yarn run production"
 
-#vendor 
+# Vendor 
 alias codecept='vendor/bin/codecept'
 alias phpspec='vendor/bin/phpspec'
 alias phpunit='vendor/bin/phpunit'
 
-#Youtube
-alias songs='cd "/mnt/c/Users/alex8/Music/new_p"'
+# Youtube
+alias songs='c && cd "Users/alex8/Music/new_p"'
+
 yt () {
 	youtube-dl -x --audio-format mp3 --add-metadata https://youtube.com/watch?v=$@
 }
+
 alias ytu='sudo youtube-dl -U'
 
-#sequelize cli
-se ()
-{
+# Sequelize cli
+se () {
 	node_modules/.bin/sequelize $@
 }
 
-se ()
-{
-	node_modules/.bin/sequelize-cli $@
-}
-
-ne ()
-{
+ne () {
 	node_modules/.bin/nest $@
 }
 
-#symfony
+# Symfony
 alias sym='php bin/console'
 alias s:n='symfony new --version=4.4 --full' 
 alias m:c='sym make:controller' 
@@ -139,17 +147,25 @@ d:q:s () {
 	sym doctrine:query:sql "$1"
 }
 
-#Laravel
-alias art='artisan'
+# Laravel
+art () {
+	php artisan $@
+}
 
 ### SFG
+
+# Elasticsearch
+
+e:c () {
+	art elasticsearch:create_index $1
+}
+
+e:u () {
+	art elasticsearch:update_index $1
+}
+
+e:b () {
+	art elasticsearch:bulk_index_all $1
+}
+
 ## Local
-#stead
-alias dev='cd "/mnt/c/HS_DEV"'
-alias dev_h='dev && cd Homestead'
-alias dev_w='dev && cd Webdev'
-
-alias stead='dev_h && vim Homestead.yaml'
-
-##vagrant vm
-alias home="cd code"
