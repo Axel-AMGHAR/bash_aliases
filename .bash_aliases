@@ -168,4 +168,12 @@ e:b () {
 	art elasticsearch:bulk_index_all $1
 }
 
+end_the_day () {
+	doc
+	cd notes
+       gacp
+	h
+ 	gacp	
+}
+
 ## Local
