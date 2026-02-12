@@ -57,7 +57,7 @@ alias gl='git log --oneline --graph --decorate'
 alias gr='git remote -v'
 
 gc () {
-	if [ -z "$1"]
+	if [ -z "$1" ]
 		then git commit
 	else
 		git commit -m "$1"
