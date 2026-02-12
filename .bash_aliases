@@ -1,43 +1,42 @@
 # -------------------------------------------------------------------
 # GENERAL & SYSTEM
 # -------------------------------------------------------------------
-alias ll='ls -lh'              # Human readable sizes
-alias la='ls -lAh'             # Show hidden files
+alias ll='ls -lh'
+alias la='ls -lAh'
 alias src='source ~/.bashrc'
 alias al='vim ~/.bash_aliases && src'
 
-# Create a directory and enter it immediately
 mkcd () {
     mkdir -p "$1" && cd "$1"
 }
 
 fd () {
-	find . -iname "*$@*"
+    find . -iname "*$@*"
 }
 
-gr_ () { grep -nri "$@" . }
+gr_ () { 
+    grep -nri "$@" . 
+}
 
 sdir () {
-	du -sh $@
+    du -sh "$@"
 }
 
 sfile () {
-	du -bsh "$@"
+    du -bsh "$@"
 }
 
-# Back
-# alias '.' is already used to define the current path
 alias ..='cd ..'
-alias ...='cd "../.."'
-alias ....='cd "../../.."'
-alias .....='cd "../../../.."'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # ROUTES
 alias c='cd /mnt/c'
 alias h='cd ~'
 alias home='h'
-alias doc='c && cd Users/aamghar/Documents'
-alias www='c && cd HS_DEV/WebDev'
+alias doc='cd /mnt/c/Users/aamghar/Documents'
+alias www='cd /mnt/c/HS_DEV/WebDev'
 alias sites='cd /mnt/c/laragon/www'
 
 # Node
@@ -52,52 +51,48 @@ alias gps='git push'
 alias grh='git reset HEAD'
 alias gd='git diff'
 alias gl='git log --oneline --graph --decorate'
-
-# Check which remotes are set (Great for GitHub vs GitLab clarity)
 alias gr='git remote -v'
 
 gc () {
-	if [ -z "$1" ]
-		then git commit
-	else
-		git commit -m "$1"
-	fi
+    if [ -z "$1" ]; then
+        git commit
+    else
+        git commit -m "$1"
+    fi
 }
 
 gacp () {
-	echo $@
-	echo "$@"
-	ga && gc "$@" && gps
+    echo "Staging all files..."
+    git add .
+    gc "$@"
+    gps
 }
 
 gcl () {
-	git clone $1
+    git clone "$1"
 }
 
 glog () {
-	git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 }
 
-# Undo all git add
 alias gres='git reset'
-
-# Branch 
 alias gb='git branch'
 
 gnb () {
-	git checkout -b $1
+    git checkout -b "$1"
 }
 
 gch () {
-	git checkout $1
+    git checkout "$1"
 }
 
 gchm () {
-	gch main
+    git checkout main
 }
 
 gm () {
-	git merge $1
+    git merge "$1"
 }
 
 # Npm
@@ -118,94 +113,80 @@ alias yrwp="yarn run watch-poll"
 alias yrh="yarn run hot"
 alias yrp="yarn run production"
 
-# Vendor 
+# Vendor
 alias codecept='vendor/bin/codecept'
 alias phpspec='vendor/bin/phpspec'
 alias phpunit='vendor/bin/phpunit'
 
 # Youtube
-alias songs='c && cd "Users/alex8/Music/new_p"'
+alias songs='cd /mnt/c/Users/alex8/Music/new_p'
 
-# Modern Youtube Downloader (yt-dlp is the updated version of youtube-dl)
-# Usage: yt VIDEO_ID
 yt () {
     yt-dlp -x --audio-format mp3 --embed-metadata -o "%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$1"
 }
 
 yt_old () {
-	youtube-dl -x --audio-format mp3 --add-metadata https://youtube.com/watch?v=$@
+    youtube-dl -x --audio-format mp3 --add-metadata "https://youtube.com/watch?v=$@"
 }
 
 alias ytu='sudo youtube-dl -U'
 
-# Sequelize cli
 se () {
-	node_modules/.bin/sequelize $@
+    node_modules/.bin/sequelize "$@"
 }
 
 ne () {
-	node_modules/.bin/nest $@
+    node_modules/.bin/nest "$@"
 }
 
-# COMPOSER
 alias ci='composer install'
 alias cu='composer update'
 alias cda='composer dump-autoload'
 
 # Symfony
 alias sym='php bin/console'
-alias s:n='symfony new --version=4.4 --full' 
-alias m:c='sym make:controller' 
-alias m:e='sym make:entity' 
-alias m:u='sym make:user' 
-alias c:d='sym doctrine:database:create' 
-alias m:m='sym make:migration' 
-alias d:d='sym doctrine:database:drop --force' 
-alias mi:m='sym doctrine:migration:migrate --no-interaction' 
-alias m:f='sym make:fixtures' 
+alias s:n='symfony new --version=4.4 --full'
+alias m:c='sym make:controller'
+alias m:e='sym make:entity'
+alias m:u='sym make:user'
+alias c:d='sym doctrine:database:create'
+alias m:m='sym make:migration'
+alias d:d='sym doctrine:database:drop --force'
+alias mi:m='sym doctrine:migration:migrate --no-interaction'
+alias m:f='sym make:fixtures'
 alias f:l='sym doctrine:fixtures:load --no-interaction'
 alias u:s='sym doctrine:schema:update --force'
-alias c:d='sym doctrine:database:create' 
 alias mmf='m:m && mi:m && f:l'
 
 d:q:s () {
-	sym doctrine:query:sql "$1"
+    sym doctrine:query:sql "$1"
 }
 
-# Laravel
 art () {
-	php artisan $@
+    php artisan "$@"
 }
 
 alias tinker='php artisan tinker'
 alias route='php artisan route:list'
 
-### SFG
-
-# Elasticsearch
-
 e:c () {
-	art elasticsearch:create_index $1
+    art elasticsearch:create_index "$1"
 }
 
 e:u () {
-	art elasticsearch:update_index $1
+    art elasticsearch:update_index "$1"
 }
 
 e:b () {
-	art elasticsearch:bulk_index_all $1
+    art elasticsearch:bulk_index_all "$1"
 }
 
-## Local
-
 sync_notes () {
-    	echo "Syncing Notes..."
-    	doc && cd notes && gacp "Daily sync: $(date +%Y-%m-%d)"
+    echo "Syncing Notes..."
+    cd /mnt/c/Users/aamghar/Documents/notes && gacp "Daily sync: $(date +%Y-%m-%d)"
 }
 
 end_the_day () {
-	cd ~
- 	gacp
-	echo "Day ended at $(date)"
+    cd ~
+    echo "Day ended at $(date)"
 }
-
