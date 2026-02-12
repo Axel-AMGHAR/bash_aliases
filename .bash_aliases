@@ -15,7 +15,7 @@ fd () {
 	find . -iname "*$@*"
 }
 
-gr () { grep -nri $@ * }
+gr_ () { grep -nri $@ * }
 
 sdir () {
 	du -sh $@
@@ -197,12 +197,13 @@ e:b () {
 
 ## Local
 
-sync_notes() {
-	echo "Syncing Notes..."
-    doc && cd notes && gacp "Daily sync: $(date +%Y-%m-%d)"
+sync_notes () {
+    	echo "Syncing Notes..."
+    	doc && cd notes && gacp "Daily sync: $(date +%Y-%m-%d)"
 }
 
 end_the_day () {
 	h
  	gacp	
 }
+
