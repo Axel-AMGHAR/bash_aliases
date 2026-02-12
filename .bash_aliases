@@ -15,9 +15,7 @@ fd () {
 	find . -iname "*$@*"
 }
 
-gr () {
-	grep -nri $@ *
-}
+gr () { grep -nri $@ * }
 
 sdir () {
 	du -sh $@
