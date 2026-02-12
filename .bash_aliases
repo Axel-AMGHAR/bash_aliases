@@ -32,6 +32,8 @@ sfile () {
     du -bsh "$@"
 }
 
+alias today='date "+%A, %b %d, %Y - %I:%M %p"'
+
 # Back
 # alias '.' is already used to define the current path
 alias ..='cd ..'
