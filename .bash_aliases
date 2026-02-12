@@ -1,8 +1,15 @@
-# GENERAL
-alias ll='ls -l'
-alias la='ls -la'
+# -------------------------------------------------------------------
+# GENERAL & SYSTEM
+# -------------------------------------------------------------------
+alias ll='ls -lh'              # Human readable sizes
+alias la='ls -lAh'             # Show hidden files
 alias src='source ~/.bashrc'
-alias al='vim ~/.bash_aliases && source ~/.bash_aliases'
+alias al='vim ~/.bash_aliases && src'
+
+# Create a directory and enter it immediately
+mkcd () {
+    mkdir -p "$1" && cd "$1"
+}
 
 fd () {
 	find . -iname "*$@*"
@@ -20,12 +27,20 @@ sfile () {
 	du -bsh $@
 }
 
+# Back
+# alias '.' is already used to define the current path
+alias ..='cd ..'
+alias ...='cd "../.."'
+alias ....='cd "../../.."'
+alias .....='cd "../../../.."'
+
 # ROUTES
 alias c='cd /mnt/c'
 alias h='cd ~'
 alias home='h'
 alias doc='c && cd Users/aamghar/Documents'
 alias www='c && cd HS_DEV/WebDev'
+alias sites='cd /mnt/c/laragon/www'
 
 # Node
 alias deno='/home/alex/.deno/bin/deno'
@@ -34,10 +49,14 @@ alias deno='/home/alex/.deno/bin/deno'
 alias gsh='git show'
 alias gs='git status'
 alias gp='git pull'
-alias ga.='git add .'
+alias ga='git add .'
 alias gps='git push'
 alias grh='git reset HEAD'
 alias gd='git diff'
+alias gl='git log --oneline --graph --decorate'
+
+# Check which remotes are set (Great for GitHub vs GitLab clarity)
+alias gr='git remote -v'
 
 gc () {
 	if [ -z $1]
@@ -82,15 +101,11 @@ gm () {
 	git merge $1
 }
 
-# Back
-alias .='cd ..'
-alias ..='cd "../.."'
-alias ...='cd "../../.."'
-alias ....='cd "../../../.."'
-
 # Npm
+alias ni='npm install'
 alias nrw='npm run watch'
 alias nrwp='npm run watch-poll'
+alias wp='nrwp'
 alias nrb='npm run build'
 alias nrs='npm run start'
 alias nrd='npm run dev'
@@ -112,7 +127,13 @@ alias phpunit='vendor/bin/phpunit'
 # Youtube
 alias songs='c && cd "Users/alex8/Music/new_p"'
 
+# Modern Youtube Downloader (yt-dlp is the updated version of youtube-dl)
+# Usage: yt VIDEO_ID
 yt () {
+    yt-dlp -x --audio-format mp3 --embed-metadata -o "%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$1"
+}
+
+yt_old () {
 	youtube-dl -x --audio-format mp3 --add-metadata https://youtube.com/watch?v=$@
 }
 
@@ -126,6 +147,11 @@ se () {
 ne () {
 	node_modules/.bin/nest $@
 }
+
+# COMPOSER
+alias ci='composer install'
+alias cu='composer update'
+alias cda='composer dump-autoload'
 
 # Symfony
 alias sym='php bin/console'
@@ -152,6 +178,9 @@ art () {
 	php artisan $@
 }
 
+alias tinker='php artisan tinker'
+alias route='php artisan route:list'
+
 ### SFG
 
 # Elasticsearch
@@ -168,12 +197,14 @@ e:b () {
 	art elasticsearch:bulk_index_all $1
 }
 
+## Local
+
+sync_notes() {
+	echo "Syncing Notes..."
+    doc && cd notes && gacp "Daily sync: $(date +%Y-%m-%d)"
+}
+
 end_the_day () {
-	doc
-	cd notes
-       gacp
 	h
  	gacp	
 }
-
-## Local
