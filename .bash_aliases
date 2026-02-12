@@ -7,6 +7,7 @@ alias ll='ls -lh'
 # Show hidden files
 alias la='ls -lAh'
 alias src='source ~/.bashrc'
+alias srca='source ~/.bash_aliases'
 alias al='vim ~/.bash_aliases && src'
 
 # Create a directory and enter it immediately
