@@ -186,6 +186,7 @@ art () {
 
 alias tinker='php artisan tinker'
 alias route='php artisan route:list'
+alias cc='php artisan cache:clear'
 
 e:c () {
     art elasticsearch:create_index "$1"
