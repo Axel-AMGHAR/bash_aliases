@@ -62,6 +62,11 @@ alias gl='git log --oneline --graph --decorate'
 # Check which remotes are set (Great for GitHub vs GitLab clarity)
 alias gr='git remote -v'
 
+# Undo changes of a file
+alias grest () {
+    git restore "$1"
+}
+
 gc () {
     if [ -z "$1" ]; then
         git commit
