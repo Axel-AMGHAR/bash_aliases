@@ -18,7 +18,8 @@ fd () {
     find . -iname "*$@*"
 }
 
-gr_ () { 
+# With line numbers / recursive / case insensitive
+sgr () { 
     grep -nri "$@" . 
 }
 
