@@ -1,11 +1,15 @@
 # -------------------------------------------------------------------
 # GENERAL & SYSTEM
 # -------------------------------------------------------------------
+
+# Human readable sizes
 alias ll='ls -lh'
+# Show hidden files
 alias la='ls -lAh'
 alias src='source ~/.bashrc'
 alias al='vim ~/.bash_aliases && src'
 
+# Create a directory and enter it immediately
 mkcd () {
     mkdir -p "$1" && cd "$1"
 }
@@ -26,6 +30,8 @@ sfile () {
     du -bsh "$@"
 }
 
+# Back
+# alias '.' is already used to define the current path
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -51,6 +57,8 @@ alias gps='git push'
 alias grh='git reset HEAD'
 alias gd='git diff'
 alias gl='git log --oneline --graph --decorate'
+
+# Check which remotes are set (Great for GitHub vs GitLab clarity)
 alias gr='git remote -v'
 
 gc () {
@@ -162,6 +170,7 @@ d:q:s () {
     sym doctrine:query:sql "$1"
 }
 
+# LARAVEL
 art () {
     php artisan "$@"
 }
@@ -188,5 +197,6 @@ sync_notes () {
 
 end_the_day () {
     cd ~
+    gacp
     echo "Day ended at $(date)"
 }
