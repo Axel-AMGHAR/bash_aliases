@@ -15,14 +15,14 @@ fd () {
 	find . -iname "*$@*"
 }
 
-gr_ () { grep -nri $@ * }
+gr_ () { grep -nri "$@" . }
 
 sdir () {
 	du -sh $@
 }
 
 sfile () {
-	du -bsh $@
+	du -bsh "$@"
 }
 
 # Back
@@ -57,16 +57,17 @@ alias gl='git log --oneline --graph --decorate'
 alias gr='git remote -v'
 
 gc () {
-	if [ -z $1]
-	then git commit
-	else git commit -m "$1"
+	if [ -z "$1"]
+		then git commit
+	else
+		git commit -m "$1"
 	fi
 }
 
 gacp () {
 	echo $@
 	echo "$@"
-	ga. && gc "$@" && gps
+	ga && gc "$@" && gps
 }
 
 gcl () {
@@ -203,7 +204,8 @@ sync_notes () {
 }
 
 end_the_day () {
-	h
- 	gacp	
+	cd ~
+ 	gacp
+	echo "Day ended at $(date)"
 }
 
