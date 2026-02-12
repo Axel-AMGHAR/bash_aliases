@@ -64,7 +64,7 @@ alias gl='git log --oneline --graph --decorate'
 alias gr='git remote -v'
 
 # Undo changes of a file
-alias grest () {
+grest () {
     git restore "$1"
 }
 
