@@ -188,6 +188,10 @@ alias tinker='php artisan tinker'
 alias route='php artisan route:list'
 alias cc='php artisan cache:clear'
 
+alias sail='vendor/bin/sail'
+
+# SIGMA
+
 e:c () {
     art elasticsearch:create_index "$1"
 }
